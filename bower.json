@@ -1,0 +1,9 @@
+{
+  "name": "IsomorphicReactApp",
+  "version": "0.0.0",
+  "license": "MIT",
+  "private": true,
+  "dependencies": {
+    "react": "~0.12.2"
+  }
+}
