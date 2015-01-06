@@ -82,6 +82,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Global.asax" />
+    <Content Include="js\helloworld.js" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -110,7 +111,9 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="js\components\" />
     <Folder Include="js\lib\" />
+    <Folder Include="js\models\" />
     <Folder Include="Models\" />
   </ItemGroup>
   <PropertyGroup>
