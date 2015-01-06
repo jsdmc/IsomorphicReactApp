@@ -82,7 +82,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Global.asax" />
-    <Content Include="js\helloworld.js" />
+    <Content Include="gulpfile.js" />
+    <None Include="js\ShakaBrahApp.jsx" />
+    <None Include="js\ShakaMovie.jsx" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -102,6 +104,7 @@
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="package.json" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -112,6 +115,7 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="js\components\" />
+    <Folder Include="js\dist\" />
     <Folder Include="js\lib\" />
     <Folder Include="js\models\" />
     <Folder Include="Models\" />
@@ -141,6 +145,11 @@
       </FlavorProperties>
     </VisualStudio>
   </ProjectExtensions>
+  <PropertyGroup>
+    <PostBuildEvent>cd $(ProjectDir)
+set NODE_ENV=$(ConfigurationName)
+gulp</PostBuildEvent>
+  </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">
