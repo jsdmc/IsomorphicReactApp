@@ -17,9 +17,9 @@ Run the followong command to force git use https. Beacuse "bower install" uses h
 
 ##Usage
 
-npm install
-bower install 
+* npm install
+* bower install 
 
-gulp watchScripts - for automatic bundle generation after changes in scripts
-gulp  - default task scripts - create bundle
+* gulp watchScripts - for automatic bundle generation after changes in scripts
+* gulp  - default task scripts - create bundle
 

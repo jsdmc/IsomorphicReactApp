@@ -1,0 +1,7 @@
+#ignore js 
+node_modules/
+js/bower_components/
+
+# .net
+obj/
+bin/ 
