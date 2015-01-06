@@ -115,6 +115,7 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="js\components\" />
+    <Folder Include="js\config\" />
     <Folder Include="js\dist\" />
     <Folder Include="js\lib\" />
     <Folder Include="js\models\" />

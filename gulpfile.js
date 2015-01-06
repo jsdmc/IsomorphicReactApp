@@ -7,7 +7,6 @@ var gulp = require('gulp'),
     watchify = require('watchify'),
     reactify = require('reactify');
 
-
 var CONFIG = {
     mainScriptPath: './js/ShakaBrahApp.jsx',
     dist: {
@@ -15,7 +14,6 @@ var CONFIG = {
         bundleName: 'bundle.js'
     }
 };
-
 gulp.task('scripts', function () {
     return scripts(false);
 });
@@ -39,6 +37,7 @@ function scripts(watch) {
         packageCache: {}, // required for watchify
         fullPaths: watch // required to be true only for watchify
     });
+    
     if (watch) {
         bundler = watchify(bundler);
     }
@@ -53,6 +52,9 @@ function scripts(watch) {
         if (production) {
             stream.pipe(gStreamify(uglify()));
         }
+
+        //remove
+        console.log('rebundle');
         
         return stream.pipe(gulp.dest(CONFIG.dist.bundlesPath));
     };
