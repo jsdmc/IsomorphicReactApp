@@ -4,7 +4,6 @@ var gulp = require('gulp'),
     gStreamify = require('gulp-streamify'),
     source = require("vinyl-source-stream"),
     browserify = require('browserify'),
-    reactify = require('reactify'),
     CombinedStream = require('combined-stream');
 
 var CONFIG = {
