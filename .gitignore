@@ -1,7 +1,11 @@
 #ignore js 
 node_modules/
 js/bower_components/
+js/dist/
 
 # .net
 obj/
-bin/ 
+[Bb]in/
+[Dd]ebug*/
+[Rr]elease*/
+packages/

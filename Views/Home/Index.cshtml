@@ -1,6 +1,8 @@
 ﻿<h2>@ViewBag.Message</h2>
 
-<div id="example"></div>
+<div id="example">
+    @Html.React("ShakaBrahApp", new {}, "div", "serverRenderedComponent")
+</div>
 
 @section scripts
 {
