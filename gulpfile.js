@@ -4,7 +4,8 @@ var gulp = require('gulp'),
     gStreamify = require('gulp-streamify'),
     source = require("vinyl-source-stream"),
     browserify = require('browserify'),
-    CombinedStream = require('combined-stream');
+    CombinedStream = require('combined-stream'),
+    path = require('path');
 
 var CONFIG = {
     mainScriptPath: './js/main.js',
@@ -17,26 +18,32 @@ var CONFIG = {
 };
 
 gulp.task('clientBundle', function () {
-    return scripts(false);
+    return scripts(CONFIG.mainScriptPath, true);
+});
+
+gulp.task('clientBundle2', function () {
+    return scripts('./js/main2.js', false);
 });
 
 gulp.task('serverBundle', function () {
-    return scripts(true);
+    return scripts(null, true);
 });
 
-gulp.task('default', ['clientBundle', 'serverBundle']);
+gulp.task('default', ['clientBundle', 'clientBundle2', 'serverBundle']);
 
 //hints here
 //http://blog.avisi.nl/2014/04/25/how-to-keep-a-fast-build-with-browserify-and-reactjs/
-function scripts(isServerBundle, watch) {
+function scripts(mainScriptPath, exposeServerVariables) {
 
+    var isServerBundle = !mainScriptPath;
+    
     var production = false;
     if (process.env.NODE_ENV === 'Release' && !isServerBundle) {
         production = true;
     }
 
-    var entryPointScript = !isServerBundle && CONFIG.mainScriptPath,
-        outputScript = isServerBundle ? CONFIG.dist.serverBundleName : CONFIG.dist.bundleName;
+    var entryPointScript = !isServerBundle && mainScriptPath/*CONFIG.mainScriptPath*/,
+        outputScript = isServerBundle ? CONFIG.dist.serverBundleName : path.basename(mainScriptPath)/*CONFIG.dist.bundleName*/;
 
     var browserifyOptions = {
         basedir: __dirname,
@@ -49,14 +56,8 @@ function scripts(isServerBundle, watch) {
 
     var bundler = isServerBundle ? browserify(browserifyOptions) : browserify(entryPointScript, browserifyOptions);
     
-    var stream;
-    
-    //construct server bundle from components in config
-    if (isServerBundle) {
-        stream = exposeServerComponents(bundler);
-    }
-    else stream = bundler.bundle();
-    
+    var stream = exposeServerVariables ? exposeServerComponents(bundler) : bundler.bundle();
+   
     //setup bundled script name
     stream = stream.pipe(source(outputScript));
     
@@ -74,7 +75,6 @@ function exposeServerComponents(browserifyBundler) {
 
     var serverComponents = require(CONFIG.serverReactConfig),
         os = require('os'),
-        path = require('path'),
         
         exposedVariables = '',
         requires = [];

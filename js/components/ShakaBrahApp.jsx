@@ -6,7 +6,7 @@ var ShakaBrahApp = React.createClass({
         return (
                 <div>
                     <h1>Shaka brah from React!</h1>
-                    <ShakaMovie />
+                    <ShakaMovie initialData={this.props.initialData} />
                 </div>
         );
     }
