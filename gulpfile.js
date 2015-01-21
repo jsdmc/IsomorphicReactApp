@@ -8,28 +8,29 @@ var gulp = require('gulp'),
     path = require('path');
 
 var CONFIG = {
-    mainScriptPath: './js/main.js',
+    //mainScriptPath: './js/reactServerRender.js',
     serverReactConfig: './js/config/serverReactComponents.js',
     dist: {
         bundlesPath: './js/dist/',
-        bundleName: 'bundle.js',
+        //bundleName: 'bundle.js',
         serverBundleName : 'serverBundle.js'
     }
 };
 
-gulp.task('clientBundle', function () {
-    return scripts(CONFIG.mainScriptPath, true);
+gulp.task('react-serverRenderBundle', function () {
+    return scripts('./js/reactServerRender.js', true);
 });
 
-gulp.task('clientBundle2', function () {
-    return scripts('./js/main2.js', false);
+gulp.task('react-clientRenderBundle', function () {
+    return scripts('./js/reactClientRender.js', false);
 });
 
-gulp.task('serverBundle', function () {
+//bundle used for rendering React components on server-side
+gulp.task('react-serverBundle', function () {
     return scripts(null, true);
 });
 
-gulp.task('default', ['clientBundle', 'clientBundle2', 'serverBundle']);
+gulp.task('default', ['react-serverRenderBundle', 'react-clientRenderBundle', 'react-serverBundle']);
 
 //hints here
 //http://blog.avisi.nl/2014/04/25/how-to-keep-a-fast-build-with-browserify-and-reactjs/

@@ -132,8 +132,8 @@
     <None Include="js\components\ShakaBrahApp.jsx" />
     <None Include="js\components\movie\ShakaMovie.jsx" />
     <Content Include="js\config\serverReactComponents.js" />
-    <Content Include="js\main.js" />
-    <Content Include="js\main2.js" />
+    <Content Include="js\reactServerRender.js" />
+    <Content Include="js\reactClientRender.js" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -157,10 +157,12 @@
     <Content Include=".bowerrc" />
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Home\ServerRender.cshtml" />
     <Content Include="package.json" />
-    <Content Include="Views\Home\Index2.cshtml" />
-    <Content Include="Views\Shared\_Layout2.cshtml" />
+    <Content Include="Views\Home\ClientRender.cshtml" />
+    <Content Include="Views\Shared\_LayoutClientRender.cshtml" />
+    <Content Include="Views\Shared\_LayoutServerRender.cshtml" />
+    <Content Include="Views\Home\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

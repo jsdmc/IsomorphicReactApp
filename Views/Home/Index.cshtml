@@ -1,14 +1,9 @@
-﻿@model List<IsomorphicReactApp.Models.ItemModel>
-
-<h2>@ViewBag.Message</h2>
-
-<div id="example">
-    @Html.React("ShakaBrahApp", new { initialData = Model}, "div", "serverRenderedComponent")
-</div>
-
-@section scripts
-{
-    <script>
-        console.log('Script from section "scripts" loaded.');
-    </script>
-}
+﻿<ul>
+    <li>
+        @Html.ActionLink("React: Server-rendered page", "ServerRender", "Home", null,  new { target = "_blank"})
+    </li>
+            
+    <li>
+        @Html.ActionLink("React: Client-rendered page", "ClientRender", "Home", null,  new { target = "_blank"})
+    </li>
+</ul>

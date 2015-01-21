@@ -14,7 +14,13 @@ namespace IsomorphicReactApp.Controllers
             _repository = new FakeRepository();
         }
 
+
         public ActionResult Index()
+        {
+            return View();
+        }
+
+        public ActionResult ServerRender()
         {
             ViewBag.Message = "Message from ViewBag.";
 
@@ -23,11 +29,11 @@ namespace IsomorphicReactApp.Controllers
             return View(model);
         }
 
-        public ActionResult Index2()
+        public ActionResult ClientRender()
         {
             ViewBag.Message = "Message from ViewBag.";
 
-            return View("Index2");
+            return View();
         }
     }
 }

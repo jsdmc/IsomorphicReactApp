@@ -1,0 +1,13 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@RenderBody()
+
+@section scripts
+{
+    @RenderSection("scripts", false)
+
+    <script src="@Url.Content("~/js/dist/reactServerRender.js")"></script>
+    @Html.ReactInitJavaScript()
+}

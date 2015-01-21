@@ -1,0 +1,17 @@
+﻿@model List<IsomorphicReactApp.Models.ItemModel>
+@{
+    Layout = "~/Views/Shared/_LayoutServerRender.cshtml";
+}
+
+<h2>@ViewBag.Message</h2>
+
+<div id="example">
+    @Html.React("ShakaBrahApp", new { initialData = Model}, "div", "serverRenderedComponent")
+</div>
+
+@section scripts
+{
+    <script>
+        console.log('Script from section "scripts" loaded.');
+    </script>
+}
