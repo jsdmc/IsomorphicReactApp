@@ -10,7 +10,7 @@ var ShakaMovie = React.createClass({
 		
 		if (!this.props.initialData){
 			var xhr = new XMLHttpRequest();
-			xhr.open('get', '/home/getItems', true);
+			xhr.open('get', '/api/items', true);
 			xhr.onload = function() {
 				var data = JSON.parse(xhr.responseText);
 				this.setState({ items: data });

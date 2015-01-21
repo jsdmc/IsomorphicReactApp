@@ -4,15 +4,24 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using IsomorphicReactApp.Models;
+using IsomorphicReactApp.Repository;
 
 namespace IsomorphicReactApp.Controllers
 {
     public class ItemsController : ApiController
     {
-        // GET api/<controller>
-        public IEnumerable<string> Get()
+        private readonly FakeRepository _repository;
+
+        public ItemsController()
         {
-            return new string[] { "value1", "value2" };
+            _repository = new FakeRepository();
+        }
+
+        // GET api/<controller>
+        public IEnumerable<ItemModel> Get()
+        {
+            return _repository.GetItems();
         }
 
         // GET api/<controller>/5

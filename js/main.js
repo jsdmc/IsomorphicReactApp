@@ -4,5 +4,5 @@
 
     console.log('Hi, I\'m client script!');
 
-    //React.render(<ShakaBrahApp />, document.getElementById('example'));
+    //React.render(<ShakaBrahApp />, document.getElementById('serverRenderedComponent'));
 });
