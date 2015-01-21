@@ -14,7 +14,7 @@ namespace IsomorphicReactApp.Repository
         {
             _items = new List<ItemModel>();
 
-            for (int i = 0; i < 100; i++)
+            for (int i = 0; i < 1000; i++)
             {
                 _items.Add(new ItemModel
                     {

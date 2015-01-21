@@ -1,7 +1,8 @@
 ﻿var React = require('react');
-var Griddle = require('griddle-react');
+//var Griddle = require('griddle-react');
+var ViewItem = require('./ViewItem');
 
-var ShakaMovie = React.createClass({
+var ShakaView = React.createClass({
 	getInitialState: function() {
 		var items = this.props.initialData ? this.props.initialData.slice(0) : [];
 		return {items: items};
@@ -19,16 +20,23 @@ var ShakaMovie = React.createClass({
 		}
 	},
     render: function() {
-        return (
-        	<div>
-	          <div>
-	            {/*<iframe width="560" height="315" src="//www.youtube.com/embed/pFIOTEyMT18" frameborder="0" allowfullscreen></iframe>*/}
-	          </div>
-			  <Griddle results={this.state.items} tableClassName="table" showFilter={true} resultsPerPage={1000}
-				showSettings={true} columns={["name", "city", "state", "country"]}/>
-          </div>
+		return (
+				<div className="panel">
+					<h3 className="panel-heading">
+						Mega grid
+					</h3>
+					<table className="table table-striped table-bordered table-hover">
+						<tbody>
+							{
+								this.state.items.map(function(elem){
+									return <ViewItem data={elem} /> ;
+								})
+							}
+						</tbody>
+					</table> 
+				</div>
         );
     }
 });
 
-module.exports = ShakaMovie;
+module.exports = ShakaView;

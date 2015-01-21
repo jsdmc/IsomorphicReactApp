@@ -129,8 +129,9 @@
   <ItemGroup>
     <Content Include="Global.asax" />
     <Content Include="gulpfile.js" />
+    <Content Include="js\components\movie\ViewItem.jsx" />
     <None Include="js\components\ShakaBrahApp.jsx" />
-    <None Include="js\components\movie\ShakaMovie.jsx" />
+    <None Include="js\components\movie\ShakaView.jsx" />
     <Content Include="js\config\serverReactComponents.js" />
     <Content Include="js\reactServerRender.js" />
     <Content Include="js\reactClientRender.js" />
