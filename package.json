@@ -5,6 +5,7 @@
   "description": "Isomorphic app template build on React.js",
   "browserify": {
     "transform": [
+	  "browserify-shim",
       [
         "reactify",
         {
@@ -13,8 +14,22 @@
       ]
     ]
   },
+  "browser":{
+    "angular" : "./js/bower_components/angular/angular.js",
+	"angular-resource" : "./js/bower_components/angular-resource/angular-resource.js"
+  },
+  "browserify-shim": {
+    "angular-resource": {
+        "depends": "angular",
+        "exports": null
+    },
+    "angular": {
+        "exports": "angular"
+    }
+  },
   "devDependencies": {
     "browserify": "~6.0.3",
+    "browserify-shim": "^3.8.2",
     "combined-stream": "0.0.7",
     "gulp": "~3.8.10",
     "gulp-streamify": "0.0.5",
@@ -28,7 +43,8 @@
   },
   "author": "Dmytro Chepurnyi",
   "dependencies": {
-    "griddle-react": "^0.2.0",
+    "ampersand-collection": "^1.4.0",
+    "ampersand-collection-rest-mixin": "^3.0.1",
     "react": "^0.12.2"
   }
 }

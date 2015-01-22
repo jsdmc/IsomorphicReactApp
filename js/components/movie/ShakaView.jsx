@@ -1,6 +1,13 @@
 ﻿var React = require('react');
-//var Griddle = require('griddle-react');
 var ViewItem = require('./ViewItem');
+
+var Collection = require("ampersand-collection");
+var restMixin = require("ampersand-collection-rest-mixin");
+var ItemsCollection = Collection.extend(restMixin, 
+{
+	url:  '/api/items'
+});
+var itemsCollection = new ItemsCollection();
 
 var ShakaView = React.createClass({
 	getInitialState: function() {
@@ -8,15 +15,14 @@ var ShakaView = React.createClass({
 		return {items: items};
 	},
 	componentWillMount: function() {
-		
+		var that = this;
 		if (!this.props.initialData){
-			var xhr = new XMLHttpRequest();
-			xhr.open('get', '/api/items', true);
-			xhr.onload = function() {
-				var data = JSON.parse(xhr.responseText);
-				this.setState({ items: data });
-			}.bind(this);
-			xhr.send();
+			
+			itemsCollection.fetch( { 
+				success: function(data){
+					that.setState({ items: data });
+				}
+			});
 		}
 	},
     render: function() {

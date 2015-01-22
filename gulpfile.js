@@ -25,12 +25,16 @@ gulp.task('react-clientRenderBundle', function () {
     return scripts('./js/reactClientRender.js', false);
 });
 
+gulp.task('angular-bundle', function () {
+    return scripts('./js/ngApp.js', false);
+});
+
 //bundle used for rendering React components on server-side
 gulp.task('react-serverBundle', function () {
     return scripts(null, true);
 });
 
-gulp.task('default', ['react-serverRenderBundle', 'react-clientRenderBundle', 'react-serverBundle']);
+gulp.task('default', ['react-serverRenderBundle', 'react-clientRenderBundle', 'react-serverBundle', 'angular-bundle']);
 
 //hints here
 //http://blog.avisi.nl/2014/04/25/how-to-keep-a-fast-build-with-browserify-and-reactjs/

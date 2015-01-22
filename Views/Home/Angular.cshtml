@@ -1,0 +1,36 @@
+﻿<h2>@ViewBag.Message</h2>
+
+<div ng-app="shakaBrahApp">
+    <div ng-controller="shakaBrahAppCtrl">
+        <div ng-model="items" shaka-view></div>
+    </div>
+</div>
+
+@section scripts
+{
+    <script type="text/template" id="shaka-view-template">
+        <div class="panel">
+			<h3 class="panel-heading">
+				Mega grid
+			</h3>
+			<table class="table table-striped table-bordered table-hover">
+				<tbody>
+					<tr ng-repeat='item in items'>
+	                    <td>{{item.id}}</td>
+	                    <td>{{item.name}}</td>
+	                    <td>{{item.city}}</td>
+	                    <td>{{item.state}}</td>
+	                    <td>{{item.country}}</td>
+	                    <td>{{item.company}}</td>
+	                    <td>{{item.favoriteNumber}}</td>
+                    </tr>
+				</tbody>
+			</table> 
+		</div>
+    </script>
+    <script>
+        console.log('Script from section "scripts" loaded.');
+    </script>
+    
+    <script src="@Url.Content("~/js/dist/ngApp.js")"></script>
+}

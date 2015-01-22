@@ -20,20 +20,36 @@ namespace IsomorphicReactApp.Controllers
             return View();
         }
 
-        public ActionResult ServerRender()
+        public ActionResult ReactServerRender()
         {
-            ViewBag.Message = "Message from ViewBag.";
+            ViewBag.Message = "Message from ViewBag to server-rendered React app.";
 
             var model = _repository.GetItems();
 
             return View(model);
         }
 
-        public ActionResult ClientRender()
+        public ActionResult ReactClientRender()
         {
-            ViewBag.Message = "Message from ViewBag.";
+            ViewBag.Message = "Message from ViewBag to client-rendered React app.";
 
             return View();
+        }
+
+        public ActionResult Angular()
+        {
+            ViewBag.Message = "Message from ViewBag to Angular App.";
+
+            return View();
+        }
+
+        public ActionResult Razor()
+        {
+            ViewBag.Message = "Message from ViewBag in Razor server-rendered page.";
+
+            var model = _repository.GetItems();
+
+            return View(model);
         }
     }
 }

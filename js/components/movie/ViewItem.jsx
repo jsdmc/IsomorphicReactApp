@@ -10,13 +10,13 @@ var ViewItem = React.createClass({
 
         return (
         		<tr>
-	                <th>{item.id}</th>
-	                <th>{item.name}</th>
-	                <th>{item.city}</th>
-	                <th>{item.state}</th>
-	                <th>{item.country}</th>
-	                <th>{item.company}</th>
-	                <th>{item.favoriteNumber}</th>
+	                <td>{item.id}</td>
+	                <td>{item.name}</td>
+	                <td>{item.city}</td>
+	                <td>{item.state}</td>
+	                <td>{item.country}</td>
+	                <td>{item.company}</td>
+	                <td>{item.favoriteNumber}</td>
                 </tr>
         );
     }
