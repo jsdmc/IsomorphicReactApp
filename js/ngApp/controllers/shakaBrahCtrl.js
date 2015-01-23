@@ -3,7 +3,7 @@
     //init deafault values
     $scope.items = [];
 
-    $scope.searchTerm = '';
+    $scope.searchTerm = '1';
     runSearch($scope.searchTerm);
     
     //perform search

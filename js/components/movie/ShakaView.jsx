@@ -17,19 +17,21 @@ var ShakaView = React.createClass({
 	componentWillMount: function() {
 		var that = this;
 		if (!this.props.initialData){
-			var defaultSearchTerm = '';
+			var defaultSearchTerm = '1';
+			this.setState({searchTerm : defaultSearchTerm});
 			this.runSearch(defaultSearchTerm)
 		}
 	},
 	runSearch: function(e){
 		var that = this;
-		var searchTerm = e.target && e.target.value || e;
+		var searchTerm = e.target ? e.target.value : e;
+
 
 		itemsCollection.fetch({
 			data: {searchTerm : searchTerm},
 			reset: true,
 			success: function(data){
-				that.setState({ items: data });
+				that.setState({ items: data , searchTerm : searchTerm });
 			}}
 		);
 
@@ -40,7 +42,7 @@ var ShakaView = React.createClass({
 					<h3 className="panel-heading">
 						Mega grid
 					</h3>
-					<input type="text" onChange={this.runSearch} />
+					<input type="text" onChange={this.runSearch} value={this.state.searchTerm}/>
 					<span>Total items count: {this.state.items.length}</span>
 					<table className="table table-striped table-bordered table-hover">
 						<tbody>
