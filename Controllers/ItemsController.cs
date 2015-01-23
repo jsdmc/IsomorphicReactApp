@@ -19,9 +19,9 @@ namespace IsomorphicReactApp.Controllers
         }
 
         // GET api/<controller>
-        public IEnumerable<ItemModel> Get()
+        public IEnumerable<ItemModel> Get(string searchTerm)
         {
-            return _repository.GetItems();
+            return _repository.GetItems(searchTerm);
         }
 
         // GET api/<controller>/5

@@ -1,13 +1,10 @@
 ﻿var ShakaView = function() {
     return {
-        link: function(scope, element, attributes) {
-
+        replace: true,
+        restrict: 'E',
+        template: angular.element(document.getElementById('shaka-view-template')).html(),
+        link: function link() {
         },
-        restrict: "A",
-        scope: true,
-        template: function() {
-            return angular.element(document.querySelector("#shaka-view-template")).html();
-        }
     };
 };
 

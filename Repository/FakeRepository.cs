@@ -14,7 +14,7 @@ namespace IsomorphicReactApp.Repository
         {
             _items = new List<ItemModel>();
 
-            for (int i = 0; i < 1000; i++)
+            for (int i = 0; i < 10; i++)
             {
                 _items.Add(new ItemModel
                     {
@@ -29,9 +29,11 @@ namespace IsomorphicReactApp.Repository
             }
         }
 
-        public List<ItemModel> GetItems()
+        public List<ItemModel> GetItems(string searchTerm)
         {
-            return _items;
+            var val = (searchTerm ?? "").Trim();
+
+            return string.IsNullOrEmpty(val) ? _items : _items.Where(x => x.name.Contains(val) || x.city.Contains(val) || x.state.Contains(val) || x.country.Contains(val) || x.company.Contains(val)).ToList();
         }
 
         public ItemModel GetItem(int id)

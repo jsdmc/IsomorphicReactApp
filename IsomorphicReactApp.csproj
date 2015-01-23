@@ -157,6 +157,7 @@
     <Content Include="js\ngApp.js" />
     <Content Include="js\ngApp\controllers\shakaBrahCtrl.js" />
     <Content Include="js\ngApp\directives\ShakaView.js" />
+    <Content Include="js\ngApp\directives\ViewItem.js" />
     <Content Include="js\ngApp\services\ItemsService.js" />
     <Content Include="js\reactServerRender.js" />
     <Content Include="js\reactClientRender.js" />

@@ -24,7 +24,7 @@ namespace IsomorphicReactApp.Controllers
         {
             ViewBag.Message = "Message from ViewBag to server-rendered React app.";
 
-            var model = _repository.GetItems();
+            var model = _repository.GetItems(null);
 
             return View(model);
         }
@@ -47,7 +47,7 @@ namespace IsomorphicReactApp.Controllers
         {
             ViewBag.Message = "Message from ViewBag in Razor server-rendered page.";
 
-            var model = _repository.GetItems();
+            var model = _repository.GetItems(null);
 
             return View(model);
         }
