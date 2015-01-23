@@ -1,7 +1,7 @@
 ﻿var ViewItem = function () {
     return {
         replace: true,
-        restrict: 'E',
+        restrict: 'A',
         template: angular.element(document.getElementById('view-item-template')).html(),
         scope: {
             item: '='
