@@ -17,19 +17,13 @@ var ShakaView = React.createClass({
 	componentWillMount: function() {
 		var that = this;
 		if (!this.props.initialData){
-			
-			itemsCollection.fetch( { 
-				data: {searchTerm : ""},
-				reset: true,
-				success: function(data){
-					that.setState({ items: data });
-				}
-			});
+			var defaultSearchTerm = '';
+			this.runSearch(defaultSearchTerm)
 		}
 	},
 	runSearch: function(e){
 		var that = this;
-		var searchTerm = e.target.value;
+		var searchTerm = e.target && e.target.value || e;
 
 		itemsCollection.fetch({
 			data: {searchTerm : searchTerm},

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
 using System.Web;
 using IsomorphicReactApp.Models;
@@ -10,11 +11,15 @@ namespace IsomorphicReactApp.Repository
     {
         private List<ItemModel> _items;
 
+        private readonly int _itemsCount = 10;
+
         public FakeRepository()
         {
+            Int32.TryParse(ConfigurationManager.AppSettings["FakeItemsCount"], out _itemsCount);
+
             _items = new List<ItemModel>();
 
-            for (int i = 0; i < 10; i++)
+            for (int i = 0; i < _itemsCount; i++)
             {
                 _items.Add(new ItemModel
                     {
