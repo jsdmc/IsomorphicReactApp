@@ -1,0 +1,53 @@
+﻿<link rel="import" href="/js/bower_components/polymer/polymer.html">
+<link rel="import" href="/Elements/items-service.html">
+<link rel="import" href="/Elements/article-list-item.html">
+
+<polymer-element name="article-list">
+    <template>
+        <style>
+            :host {
+                display: block;
+                margin: 0 auto;
+                max-width: 50%;
+            }
+
+            article-list-item {
+                margin-bottom: 30px;
+            }
+
+            .ric-search {
+                background-color: #f2f2f2;
+                padding: 15px;
+                margin-bottom: 20px;
+            }
+
+            @import '/css/ricardo.css';
+        </style>
+
+        <items-service id="service" items="{{items}}" searchTerm="{{searchTerm}}"></items-service>
+        
+        <div class="ric-search">
+            <h3>Search:</h3>
+            <input value="{{searchTerm}}"/>
+        </div>
+
+        <template repeat="{{item in items}}">
+            <article-list-item>
+                <span class="ric-offer-title">{{item.title}}</span>
+                <span class="ric-offer-subtitle">{{item.subtitle}}</span>
+                <div class="ric-price-bid">{{item.bidPrice}}</div>
+                <div class="ric-bid-description">{{item.bidLabel}}</div>
+                <div class="ric-price-bin">{{item.binPrice}}</div>
+                <div class="ric-buynow-description">Buy now</div>
+                <div class="ric-shipping-costs">+ CHF 2.-</div>
+                <div class="ric-shipping-description">Shipping costs</div>
+                <span class="ric-enddate">{{item.endDate}}</span>
+                <span class="ric-item-condition">Used</span>
+                <span class="ric-shipping-type">Letter A-Post</span>
+            </article-list-item>
+        </template>
+    </template>
+    <script>
+        Polymer({});
+    </script>
+</polymer-element>

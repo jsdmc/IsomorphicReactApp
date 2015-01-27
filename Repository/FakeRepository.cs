@@ -29,7 +29,14 @@ namespace IsomorphicReactApp.Repository
                         state = "Hawaii" + i.ToString(),
                         country = "United Kingdom" + i.ToString(),
                         company = "Ovolo" + i.ToString(),
-                        favoriteNumber = new Random().Next(100)
+                        favoriteNumber = new Random().Next(100),
+                        image = "http://pics.ricardostatic.ch/2_743341192/dvds-code-2-europa/dvd-paris-je-t-aime.jpg",
+                        title = "Title" + i.ToString(),
+                        subtitle = "Subtitle" + i.ToString(),
+                        bidPrice = i,
+                        bidLabel = i.ToString() + "Bids",
+                        binPrice = i + 50,
+                        endDate = i.ToString() + "hours",
                     });
             }
         }

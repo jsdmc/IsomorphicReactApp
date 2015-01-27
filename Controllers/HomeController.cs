@@ -51,5 +51,19 @@ namespace IsomorphicReactApp.Controllers
 
             return View(model);
         }
+
+        public ActionResult PolymerRWD()
+        {
+            ViewBag.Message = "Message from ViewBag to PolymerRWD app";
+
+            return View();
+        }
+
+        public ActionResult PolymerTable()
+        {
+            ViewBag.Message = "Message from ViewBag to Polymer table app";
+
+            return View();
+        }
     }
 }

@@ -148,9 +148,18 @@
     <None Include="ClearScript.V8\v8-x64.dll">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+    <Content Include="css\ricardo.css" />
+    <Content Include="Elements\article-list-item.html" />
+    <Content Include="Elements\article-list.html" />
+    <Content Include="Elements\items-service.html" />
+    <Content Include="Elements\article-table.html" />
     <Content Include="Global.asax" />
     <Content Include="gulpfile.js" />
     <Content Include="js\components\movie\ViewItem.jsx" />
+    <Content Include="fonts\MetaWeb-Bold.ttf" />
+    <Content Include="fonts\MetaWeb-Bold.woff" />
+    <Content Include="fonts\MetaWeb-Book.ttf" />
+    <Content Include="fonts\MetaWeb-Book.woff" />
     <None Include="js\components\ShakaBrahApp.jsx" />
     <None Include="js\components\movie\ShakaView.jsx" />
     <Content Include="js\config\serverReactComponents.js" />
@@ -190,6 +199,8 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Home\Angular.cshtml" />
     <Content Include="Views\Home\Razor.cshtml" />
+    <Content Include="Views\Home\PolymerRWD.cshtml" />
+    <Content Include="Views\Home\PolymerTable.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

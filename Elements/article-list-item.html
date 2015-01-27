@@ -1,0 +1,71 @@
+﻿<link rel="import" href="../js/bower_components/polymer/polymer.html">
+
+<polymer-element name="article-list-item" noscript>
+    <template>
+        <style>
+            @import '/js/bower_components/bootstrap/dist/css/bootstrap.min.css';
+
+            @import '/css/ricardo.css';
+
+            :host {
+                background-color: white;
+                display: list-item;
+                list-style: none;
+                height: auto;
+                margin-left: auto;
+                margin-right: auto;
+                padding-bottom: 5px;
+                padding-left: 15px;
+                padding-right: 15px;
+                padding-top: 20px;
+                position: relative;
+            }
+
+            .ric-offer-image-wrapper ::content img {
+                display: inline;
+            }
+
+            .ric-offer-details {
+                bottom: auto;
+                margin-left: auto;
+                margin-top: auto;
+            }
+        </style>
+       
+            <div class="row">
+                <div class="ric-offer-image-container">
+                    <div class="ric-offer-image-wrapper img-thumbnail">
+                        <content select="img"></content>
+                    </div>
+                </div>
+                <div class="ric-offer-head col-xs-7 col-sm-6 col-md-6">
+                    <div class="ric-offer-info">
+                        <content select=".ric-offer-title"></content>
+                        <content select=".ric-offer-subtitle"></content>
+                    </div>
+                </div>
+                <div class="ric-offer-price col-xs-6 col-sm-3">
+                    <content select=".ric-price-bid"></content>
+                    <content select=".ric-bid-description"></content>
+                    <content select=".ric-price-bin"></content>
+                    <content select=".ric-buynow-description"></content>
+                    <content select=".ric-shippng-costs"></content>
+                    <content select=".ric-shippng-description"></content>
+                </div>
+                <div class="ric-offer-details col-sm-9 col-md-8 col-xs-12">
+                    <div class="row">
+                        <div class="col-xs-6 col-sm-4">
+                            <content select=".ric-enddate"></content>
+                        </div>
+                        <div class="hidden-xs col-sm-4">
+                            <content select=".ric-item-condition"></content>
+                        </div>
+                        <div class="col-xs-6 col-sm-4">
+                            <content select=".ric-shipping-type"></content>
+                        </div>
+                    </div> 
+                </div>
+            </div>
+
+    </template>
+</polymer-element>

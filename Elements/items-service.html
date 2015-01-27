@@ -1,0 +1,30 @@
+﻿<link rel="import" href="/js/bower_components/polymer/polymer.html">
+<link rel="import" href="/js/bower_components/core-ajax/core-ajax.html">
+
+<polymer-element name="items-service" attributes="items searchTerm">
+  <template>
+    <style>
+        :host {
+          display: none;
+        }
+    </style>
+    <core-ajax id="ajax"
+        auto
+        url="/api/items/"
+        params='{"searchTerm": "{{searchTerm}}" }'
+        on-core-response="{{itemsLoaded}}"
+        handleAs="json">
+    </core-ajax>
+  </template>
+  <script>
+      Polymer('items-service', {
+          created: function () {
+              this.items = [];
+          },
+          itemsLoaded: function () {
+              // Make a copy of the loaded data
+              this.items = this.$.ajax.response.slice(0);
+          }
+      });
+  </script>
+</polymer-element>

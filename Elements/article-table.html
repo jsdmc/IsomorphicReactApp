@@ -1,0 +1,52 @@
+﻿<link rel="import" href="/js/bower_components/polymer/polymer.html">
+<link rel="import" href="/Elements/items-service.html">
+
+<polymer-element name="article-table">
+    <template>
+        <style>
+            :host {
+                display: block;
+                margin: 0 auto;
+                max-width: 50%;
+            }
+
+            @import '/js/bower_components/bootstrap/dist/css/bootstrap.min.css';
+            @import '/css/ricardo.css';
+
+            table {
+                table-layout: fixed;
+                width: 100%;
+            }
+
+            .ric-search {
+                margin-bottom: 30px;
+                background-color: #f2f2f2;
+                padding: 15px;
+            }
+        </style>
+
+        <items-service id="service" items="{{items}}" searchTerm="{{searchTerm}}"></items-service>
+        
+        <div class="ric-search">
+            <h3>Search:</h3>
+            <input value="{{searchTerm}}"/>
+        </div>
+        
+        <table>
+            <template repeat="{{item in items}}">
+                <tr>
+                    <td>{{item.id}}</td>
+                    <td>{{item.name}}</td>
+                    <td>{{item.city}}</td>
+                    <td>{{item.state}}</td>
+                    <td>{{item.country}}</td>
+                    <td>{{item.company}}</td>
+                    <td>{{item.favoriteNumber}}</td>
+                </tr>
+            </template>
+        </table>
+    </template>
+    <script>
+        Polymer({});
+    </script>
+</polymer-element>
