@@ -4,64 +4,131 @@ var gulp = require('gulp'),
     gStreamify = require('gulp-streamify'),
     source = require("vinyl-source-stream"),
     browserify = require('browserify'),
+    reactify = require('reactify'),
+    through = require('through'),
+    riotCompiler = require('riot/compiler/compiler'),
     CombinedStream = require('combined-stream'),
-    path = require('path');
+    //helpers
+    path = require('path'),
+    extend = require('util')._extend;
+
 
 var CONFIG = {
-    //mainScriptPath: './js/reactServerRender.js',
     serverReactConfig: './js/config/serverReactComponents.js',
     dist: {
         bundlesPath: './js/dist/',
-        //bundleName: 'bundle.js',
         serverBundleName : 'serverBundle.js'
     }
 };
 
 gulp.task('react-serverRenderBundle', function () {
-    return scripts('./js/reactServerRender.js', true);
+    return scripts('./js/reactServerRender.js', {
+        exposeServerVariables: true,
+        reactify : true
+    });
 });
 
 gulp.task('react-clientRenderBundle', function () {
-    return scripts('./js/reactClientRender.js', false);
+    return scripts('./js/reactClientRender.js', {
+        reactify: true
+    });
 });
 
 gulp.task('angular-bundle', function () {
-    return scripts('./js/ngApp.js', false);
+    return scripts('./js/ngApp.js');
+});
+
+gulp.task('riot-bundle', function () {
+    return scripts('./js/riotApp.js', { riotify: true });
 });
 
 //bundle used for rendering React components on server-side
 gulp.task('react-serverBundle', function () {
-    return scripts(null, true);
+    return scripts(null, {
+        exposeServerVariables: true,
+        reactify: true
+    });
 });
 
-gulp.task('default', ['react-serverRenderBundle', 'react-clientRenderBundle', 'react-serverBundle', 'angular-bundle']);
+gulp.task('default',
+    [
+        'react-serverRenderBundle',
+        'react-clientRenderBundle',
+        'react-serverBundle',
+        'angular-bundle',
+        'riot-bundle'
+]);
 
 //hints here
 //http://blog.avisi.nl/2014/04/25/how-to-keep-a-fast-build-with-browserify-and-reactjs/
-function scripts(mainScriptPath, exposeServerVariables) {
+function scripts(entryPointScript, opts) {
 
-    var isServerBundle = !mainScriptPath;
+    //default bunlde options
+    var defaultOptions = { };
+    //extend with specified in specific tasks
+    var options = extend(defaultOptions, opts || {});
+
+    //entry point script specified only for normal bundles
+    //server bundle that uses React components is build dynamically 
+    var isServerBundle = !entryPointScript;
     
     var production = false;
     if (process.env.NODE_ENV === 'Release' && !isServerBundle) {
         production = true;
     }
-
-    var entryPointScript = !isServerBundle && mainScriptPath/*CONFIG.mainScriptPath*/,
-        outputScript = isServerBundle ? CONFIG.dist.serverBundleName : path.basename(mainScriptPath)/*CONFIG.dist.bundleName*/;
-
+    
+    //common browserify options
     var browserifyOptions = {
         basedir: __dirname,
         debug: !production,
-        extensions: ['.jsx', '.js'],
+        extensions: ['.jsx', '.js', '.tag'],
         //cache: {}, // required for watchify
         //packageCache: {}, // required for watchify
         //fullPaths: watch // required to be true only for watchify
     };
-
-    var bundler = isServerBundle ? browserify(browserifyOptions) : browserify(entryPointScript, browserifyOptions);
     
-    var stream = exposeServerVariables ? exposeServerComponents(bundler) : bundler.bundle();
+    //define browserify bundler and output script name
+    var bundler,
+        outputScript;
+    
+    if (isServerBundle) {
+        bundler = browserify(browserifyOptions);
+        outputScript = CONFIG.dist.serverBundleName;
+    } else {
+        bundler = browserify(entryPointScript, browserifyOptions);
+        outputScript = path.basename(entryPointScript);
+    }
+
+    //transform JSX files to JS
+    if (options.reactify) {
+        bundler.transform(reactify);
+    }
+    
+    //transform Riot TAG files to JS
+    //TODO: replace with rioctify plugin when they release version with fixes
+    //for now code taken directly from pull request
+    if (options.riotify) {
+        bundler.transform(function(file, o) {
+            var opts = o;
+            var content = '';
+
+            return !file.match(/\.tag$/) ? through() : through(
+                function(chunk) { // write
+                    content += chunk.toString();
+                },
+                function() { // end
+                    this.queue(riotCompiler.compile(content, opts));
+                    this.emit('end');
+                }
+            );
+        });
+    }
+    
+    //expose React components used for server-side rendering
+    //or proceed with normal files bundling
+    var stream = options.exposeServerVariables
+        ? exposeServerComponents(bundler)
+        : bundler.bundle();
    
     //setup bundled script name
     stream = stream.pipe(source(outputScript));

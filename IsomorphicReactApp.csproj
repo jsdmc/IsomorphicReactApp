@@ -170,6 +170,7 @@
     <Content Include="js\ngApp\services\ItemsService.js" />
     <Content Include="js\reactServerRender.js" />
     <Content Include="js\reactClientRender.js" />
+    <Content Include="js\riotApp.js" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -201,6 +202,10 @@
     <Content Include="Views\Home\Razor.cshtml" />
     <Content Include="Views\Home\PolymerRWD.cshtml" />
     <Content Include="Views\Home\PolymerTable.cshtml" />
+    <Content Include="Views\Home\Riot.cshtml" />
+    <Content Include="js\riotApp\main-container.tag" />
+    <Content Include="js\riotApp\view\shaka-item.tag" />
+    <Content Include="js\riotApp\view\shaka-view.tag" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

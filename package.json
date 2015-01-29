@@ -5,26 +5,20 @@
   "description": "Isomorphic app template build on React.js",
   "browserify": {
     "transform": [
-	  "browserify-shim",
-      [
-        "reactify",
-        {
-          "es6": true
-        }
-      ]
+      "browserify-shim"
     ]
   },
-  "browser":{
-    "angular" : "./js/bower_components/angular/angular.js",
-	"angular-resource" : "./js/bower_components/angular-resource/angular-resource.js"
+  "browser": {
+    "angular": "./js/bower_components/angular/angular.js",
+    "angular-resource": "./js/bower_components/angular-resource/angular-resource.js"
   },
   "browserify-shim": {
     "angular-resource": {
-        "depends": "angular",
-        "exports": null
+      "depends": "angular",
+      "exports": null
     },
     "angular": {
-        "exports": "angular"
+      "exports": "angular"
     }
   },
   "devDependencies": {
@@ -35,6 +29,8 @@
     "gulp-streamify": "0.0.5",
     "gulp-uglify": "^1.0.2",
     "reactify": "~0.16.0",
+    "riot": "^2.0.3",
+    "through": "^2.3.6",
     "vinyl-source-stream": "~1.0.0"
   },
   "repository": {

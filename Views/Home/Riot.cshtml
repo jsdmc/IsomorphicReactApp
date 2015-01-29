@@ -1,0 +1,14 @@
+﻿<h2>@ViewBag.Message</h2>
+
+<div id="riotAppElem">
+    <main-container/>
+</div>
+
+@section scripts
+{
+    <script>
+        console.log('Script from section "scripts" loaded.');
+    </script>
+    
+    <script src="@Url.Content("~/js/dist/riotApp.js")"></script>
+}

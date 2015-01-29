@@ -65,5 +65,12 @@ namespace IsomorphicReactApp.Controllers
 
             return View();
         }
+
+        public ActionResult Riot()
+        {
+            ViewBag.Message = "Message from ViewBag to Riot App.";
+
+            return View();
+        }
     }
 }
