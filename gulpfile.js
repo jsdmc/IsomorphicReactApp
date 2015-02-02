@@ -5,8 +5,7 @@ var gulp = require('gulp'),
     source = require("vinyl-source-stream"),
     browserify = require('browserify'),
     reactify = require('reactify'),
-    through = require('through'),
-    riotCompiler = require('riot/compiler/compiler'),
+    riotify = require('riotify'),
     CombinedStream = require('combined-stream'),
     //helpers
     path = require('path'),
@@ -105,23 +104,8 @@ function scripts(entryPointScript, opts) {
     }
     
     //transform Riot TAG files to JS
-    //TODO: replace with rioctify plugin when they release version with fixes
-    //for now code taken directly from pull request
     if (options.riotify) {
-        bundler.transform(function(file, o) {
-            var opts = o;
-            var content = '';
-
-            return !file.match(/\.tag$/) ? through() : through(
-                function(chunk) { // write
-                    content += chunk.toString();
-                },
-                function() { // end
-                    this.queue(riotCompiler.compile(content, opts));
-                    this.emit('end');
-                }
-            );
-        });
+        bundler.transform(riotify);
     }
     
     //expose React components used for server-side rendering

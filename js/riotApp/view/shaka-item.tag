@@ -1,13 +1,13 @@
 ﻿var riot = require('riot');
 
 <shaka-item>
-	<span>{opts.itemid}</span>
-	<span>{opts.itemname}</span>
-	<span>{item.city}</span>
-	<span>{item.state}</span>
-	<span>{item.country}</span>
-	<span>{item.company}</span>
-	<span>{item.favoriteNumber}</span>
+	<td>{opts.itemid}</td>
+	<td>{opts.itemname}</td>
+	<td>{item.city}</td>
+	<td>{item.state}</td>
+	<td>{item.country}</td>
+	<td>{item.company}</td>
+	<td>{item.favoriteNumber}</td>
 
     //TODO: fix binding for usage item obj
     item = opts.data;
